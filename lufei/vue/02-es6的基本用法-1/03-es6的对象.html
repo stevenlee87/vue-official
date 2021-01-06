@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title></title>
+</head>
+<body>
+	<script>
+		var person ={
+			name:"steven",
+			age:18,
+			fav:function(){
+				console.log(this); // this指向 当前的对象
+				console.log(this.name);
+			}
+		}
+		
+		/*
+		var person2 ={
+			name:"steven2",
+			age:18,
+			fav: () => {
+				console.log(this); // this指向 发生了改变，this指向 定义person2的父级对象(上下文)
+				console.log(this.name);
+			}
+		}
+		*/
+		
+		//对象的单体模式
+		let person3 = {
+			name: 'steven3',
+			age:18,
+			fav(){
+				console.log(this);
+			}
+			// fav:function(){
+				
+			// }
+		}
+		
+		person3.fav();
+	</script>
+</body>
+</html>
