@@ -6,6 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title></title>
 	<script src="./vue.js"></script>
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 	<div id="app">
@@ -47,6 +48,25 @@
 					console.log(e.target);
 					console.log(this);
 				}
+			},
+			// 组件创建完成，ajax
+			created(){
+				//this指向问题 能用箭头函数 不要用匿名函数
+				// console.log(this);
+				// setInterval(function(){
+				// 	console.log(this);
+				// },1000)
+				setInterval( () => {
+					// console.log(this);
+					this.currentIndex++;
+					if (this.currentIndex == 4){
+						this.currentIndex = 0;
+					}
+				},1000)
+				// let _this = this;
+				// setInterval( function() {
+				// 	console.log(_this);
+				// },1000)
 			}
 		})
 	</script>
