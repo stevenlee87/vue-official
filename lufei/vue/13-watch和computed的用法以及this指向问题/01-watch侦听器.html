@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+	<div id="app">
+		<p>{{ msg }}</p>
+		<br>
+		<p>{{ age }}</p>
+		<button @click = 'clickHandler'>修改姓名</button>
+	</div>
+	<script src="../vue.js"></script>
+	<script type="text/javascript">
+		new Vue({
+			el:'#app',
+			data(){
+				return {
+					msg: "steven",
+					age: 18
+				}
+				
+			},
+			methods:{
+				clickHandler(){
+					this.msg = "lee";
+					this.age = 15;
+				}
+			},
+			// watch监听单个属性，如果想监听多个属性，声明多个属性的监听
+			watch:{
+				'msg':function(value) {
+					
+					console.log(value);
+					if(value === 'lee'){
+						alert(1);
+						this.msg = 'steven lee';
+					}
+				},
+				'age':function(value) {
+					
+					console.log(value);
+					if(value === 15){
+						alert(222222222222);
+						this.age = 10;
+					}
+				}
+			}
+		})
+	</script>
+</body>
+</html>	
