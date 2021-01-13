@@ -15,8 +15,8 @@
 </head>
 <body>
 	<div id="app">
-		<span @click = 'handlerClick(index)' v-for="(category,index) in categoryList" :key='category.id' 
-		:class='{active:currentIndex==index}'>
+		<span @click = 'handlerClick(index)' v-for="(category,index) in categoryList" 
+		:key='category.id' :class='{active:currentIndex==index}'>
 			{{ category.name }}
 		</span>
 		
