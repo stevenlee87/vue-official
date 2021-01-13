@@ -1,53 +1,53 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 </head>
 <body>
-	<div id="app">
-		<p>{{ myMsg }}</p>
-		<button @click = 'clickHandler'>修改</button>
-	</div>
-	<script src="../vue.js"></script>
-	<script type="text/javascript">
-		let vm = new Vue({
-			el:'#app',
-			data(){
-				return {
-					msg: "steven",
-					age: 18
-				}
-				
-			},
-			created(){
-				// 定时器 ajax 库 function(){}
-				setInterval ({
-					
-				})
-			},
-			methods:{
-				clickHandler(){
-					//this的指向就是当前对象
-					this.msg = "lee";
-					this.age = 20
-				},
-				clickHandler:function () {
-					console.log(this);
-				}
-				// clickHandler: () => { //this指向window，能用箭头用箭头。methods里不需要用箭头函数
-				// 	console.log(this);
-				// }
-			},
-			computed:{
-				myMsg:function () {
-					//业务逻辑
-					//计算属性默认只有getter方法
-					return `我的名字叫${this.msg},年龄是${this.age}`;
-				}
-			}
-		})
-	</script>
+    <div id="app">
+        <p>{{ myMsg }}</p>
+        <button @click = 'clickHandler'>修改</button>
+    </div>
+    <script src="../vue.js"></script>
+    <script type="text/javascript">
+        let vm = new Vue({
+            el:'#app',
+            data(){
+                return {
+                    msg: "steven",
+                    age: 18
+                }
+
+            },
+            created(){
+                // 定时器 ajax 库 function(){}
+                setInterval ({
+
+                })
+            },
+            methods:{
+                clickHandler(){
+                    //this的指向就是当前对象
+                    this.msg = "lee";
+                    this.age = 20
+                },
+                clickHandler:function () {
+                    console.log(this);
+                }
+                // clickHandler: () => { //this指向window，能用箭头用箭头。methods里不需要用箭头函数
+                //     console.log(this);
+                // }
+            },
+            computed:{
+                myMsg:function () {
+                    //业务逻辑
+                    //计算属性默认只有getter方法
+                    return `我的名字叫${this.msg},年龄是${this.age}`;
+                }
+            }
+        })
+    </script>
 </body>
-</html>	
+</html>

@@ -1,75 +1,75 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<style type="text/css">
-		ul li.active{
-			background-color: darkcyan;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style type="text/css">
+        ul li.active{
+            background-color: darkcyan;
+        }
+    </style>
 </head>
 <body>
 <div id="music">
-	<!-- @ended 播放完成 会自动调用该方法-->
-	<audio :src="musicData[currentIndex].songSrc" controls autoplay @ended="nextHandler"></audio>
-	<ul>
-		<li @click = 'songHandler(index)'  v-for='(item,index) in musicData' 
-		:key="item.id" :class = '{active:index===currentIndex}'>
-			<h2>歌手：{{ item.author }}</h2>
-			<p>歌名：{{ item.name }}</p>
-		</li>
-	</ul>
+    <!-- @ended 播放完成 会自动调用该方法-->
+    <audio :src="musicData[currentIndex].songSrc" controls autoplay @ended="nextHandler"></audio>
+    <ul>
+        <li @click = 'songHandler(index)'  v-for='(item,index) in musicData'
+        :key="item.id" :class = '{active:index===currentIndex}'>
+            <h2>歌手：{{ item.author }}</h2>
+            <p>歌名：{{ item.name }}</p>
+        </li>
+    </ul>
 </div>
 <script src="./vue.js"></script>
 <script>
-	var musicData = [{
-		id: 1,
-		name: 'Juice',
-		author: 'sueco',
-		songSrc: './static/Juice.mp3'
-	},
-	{
-		id: 2,
-		name: 'novacane',
-		author: 'sueco',
-		songSrc: './static/novacane_) [prod. Willie Schultz].mp3'
-	},
-	{
-		id:3,
-		name:'DJHoli - Semi Final',
-		author: 'DJHoli',
-		songSrc: './static/DJHoli - Semi Final.mp3'
-	},
-	{
-		id:4,
-		name:'A003 XILENT XONIC',
-		author: 'unknown',
-		songSrc: './static/A003 XILENT XONIC.mp3'
-	}];
-		
-	new Vue({
-		el: '#music',
-		data() {
-			return {
-				musicData:[],
-				currentIndex:0
-			}
-		},
-		methods:{
-			songHandler(i){
-				this.currentIndex = i;
-			},
-			nextHandler(){
-				this.currentIndex++;
-			}
-		},
-		
-		created(){
-			this.musicData = musicData
-		}
-	})
+    var musicData = [{
+        id: 1,
+        name: 'Juice',
+        author: 'sueco',
+        songSrc: './static/Juice.mp3'
+    },
+    {
+        id: 2,
+        name: 'novacane',
+        author: 'sueco',
+        songSrc: './static/novacane_) [prod. Willie Schultz].mp3'
+    },
+    {
+        id:3,
+        name:'DJHoli - Semi Final',
+        author: 'DJHoli',
+        songSrc: './static/DJHoli - Semi Final.mp3'
+    },
+    {
+        id:4,
+        name:'A003 XILENT XONIC',
+        author: 'unknown',
+        songSrc: './static/A003 XILENT XONIC.mp3'
+    }];
+
+    new Vue({
+        el: '#music',
+        data() {
+            return {
+                musicData:[],
+                currentIndex:0
+            }
+        },
+        methods:{
+            songHandler(i){
+                this.currentIndex = i;
+            },
+            nextHandler(){
+                this.currentIndex++;
+            }
+        },
+
+        created(){
+            this.musicData = musicData
+        }
+    })
 </script>
 </body>
 </html>

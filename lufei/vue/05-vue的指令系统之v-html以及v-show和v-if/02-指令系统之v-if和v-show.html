@@ -1,62 +1,62 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title></title>
-	<script src="./vue.js"></script>
-	<style type="text/css">
-		.box{
-			width: 200px;
-			height: 200px;
-			background-color: red;
-		}
-		.box2{
-			width: 200px;
-			height: 200px;
-			background-color: green;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <script src="./vue.js"></script>
+    <style type="text/css">
+        .box{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+        .box2{
+            width: 200px;
+            height: 200px;
+            background-color: green;
+        }
+    </style>
 </head>
 <body>
-	<div id="content">
-		{{ add(2,3) }}
-		
-		<button v-on:click="handlerClick">隐藏</button>
-		<div class="box" v-show="isShow"></div>
-		<div class="box2" v-if="isShow"></div>
-		
-		<div v-if="Math.random() > 0.5">
-		  Now you see me
-		</div>
-		<div v-else>
-		  Now you don't
-		</div>
-	</div>
-	<script>
-		//数据驱动视图
-		new Vue({
-			el:'#content',
-			data () {
-				//data中是一个函数，函数中return一个对象，可以是空对象，但不能不return
-				return {
-					msg: '<h2>steven</h2>',
-					isShow: true
-				}
-			},
-			methods:{
-				add (x,y) {
-					return x+y
-				},
-				handlerClick() {
-					//数据驱动
-					console.log(this)
-					//this.isShow=false
-					this.isShow=!this.isShow
-				}
-			}
-		})
-	</script>
+    <div id="content">
+        {{ add(2,3) }}
+
+        <button v-on:click="handlerClick">隐藏</button>
+        <div class="box" v-show="isShow"></div>
+        <div class="box2" v-if="isShow"></div>
+
+        <div v-if="Math.random() > 0.5">
+          Now you see me
+        </div>
+        <div v-else>
+          Now you don't
+        </div>
+    </div>
+    <script>
+        //数据驱动视图
+        new Vue({
+            el:'#content',
+            data () {
+                //data中是一个函数，函数中return一个对象，可以是空对象，但不能不return
+                return {
+                    msg: '<h2>steven</h2>',
+                    isShow: true
+                }
+            },
+            methods:{
+                add (x,y) {
+                    return x+y
+                },
+                handlerClick() {
+                    //数据驱动
+                    console.log(this)
+                    //this.isShow=false
+                    this.isShow=!this.isShow
+                }
+            }
+        })
+    </script>
 </body>
-</html>	
+</html>

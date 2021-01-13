@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title></title>
-	<script src="./vue.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <script src="./vue.js"></script>
 </head>
 <body>
-	<div id="content">
-		{{ msg }}
-		<div v-text="msg"></div>
-		<div v-html="msg"></div>
-	</div>
-	<script>
-		new Vue({
-			el:'#content',
-			data () {
-				//data中是一个函数，函数中return一个对象，可以是空对象，但不能不return
-				return {
-					msg: '<h2>steven</h2>'
-				}
-			}
-		})
-	</script>
+    <div id="content">
+        {{ msg }}
+        <div v-text="msg"></div>
+        <div v-html="msg"></div>
+    </div>
+    <script>
+        new Vue({
+            el:'#content',
+            data () {
+                //data中是一个函数，函数中return一个对象，可以是空对象，但不能不return
+                return {
+                    msg: '<h2>steven</h2>'
+                }
+            }
+        })
+    </script>
 </body>
-</html>	
+</html>

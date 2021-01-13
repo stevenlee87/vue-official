@@ -6,7 +6,7 @@ import (
 )
 
 //type Status struct {
-//	ErrorNo int `json:"error_no"`
+//    ErrorNo int `json:"error_no"`
 //}
 
 type Navigation struct {
@@ -17,8 +17,8 @@ type Navigation struct {
 
 func main() {
 	//navs := []Navigation{{ID: 1, Name: "Python", Category: 1}, {ID: 2, Name: "Linux基础", Category: 4},
-	//	{ID: 3, Name: "前端", Category: 2}, {ID: 4, Name: "Python进阶", Category: 1}, {ID: 6, Name: "UI", Category: 5},
-	//	{ID: 7, Name: "工具", Category: 1}}
+	//    {ID: 3, Name: "前端", Category: 2}, {ID: 4, Name: "Python进阶", Category: 1}, {ID: 6, Name: "UI", Category: 5},
+	//    {ID: 7, Name: "工具", Category: 1}}
 
 	var navs []Navigation
 	nav1 := Navigation{

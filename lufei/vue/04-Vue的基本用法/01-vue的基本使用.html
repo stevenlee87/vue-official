@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title></title>
-	<script src="./vue.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <script src="./vue.js"></script>
 </head>
 <body>
-	<div id="app">
-		<!--模板语法 -->
-		<h2>{{ msg }}</h2>
-		<h3>{{ 'haha' }}</h3>
-		<h3>{{ 1+1 }}</h3>
-		<h4>{{ {'name':"steven"} }}</h4>
-		<h5>{{ person.name }}</h5>
-		<h2>{{ 1>2? '真的': '假的'}}</h2>
-		<h2>{{ msg2.split('').reverse().join('') }}</h2>
-	</div>
-	<script>
-		//2.实例化对象
-		new Vue({
-			el:'#app', //绑定那块儿地
-			data:{
-				//数据属性 种子
-				msg:'黄瓜', 
-				person:{
-					name:'jack'
-				},
-				msg2: 'hello vue'
-			}
-		})
-	</script>
+    <div id="app">
+        <!--模板语法 -->
+        <h2>{{ msg }}</h2>
+        <h3>{{ 'haha' }}</h3>
+        <h3>{{ 1+1 }}</h3>
+        <h4>{{ {'name':"steven"} }}</h4>
+        <h5>{{ person.name }}</h5>
+        <h2>{{ 1>2? '真的': '假的'}}</h2>
+        <h2>{{ msg2.split('').reverse().join('') }}</h2>
+    </div>
+    <script>
+        //2.实例化对象
+        new Vue({
+            el:'#app', //绑定那块儿地
+            data:{
+                //数据属性 种子
+                msg:'黄瓜', 
+                person:{
+                    name:'jack'
+                },
+                msg2: 'hello vue'
+            }
+        })
+    </script>
 </body>
-</html>	
+</html>    

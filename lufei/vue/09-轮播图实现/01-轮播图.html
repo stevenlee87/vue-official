@@ -1,74 +1,74 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title></title>
-	<script src="./vue.js"></script>
-	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <script src="./vue.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-	<div id="app">
-		<img :src="images[currentIndex].imgSrc" alt="" @click="imgHandler">
-		<br>
-		<button @click="preHandler">上一张</button>
-		<button @click="nextHandler">下一张</button>
-	</div>
-	<script>
-		let vm = new Vue({
-			el:'#app',
-			data(){
-				return {
-					images:[
-						{id:1,imgSrc:'./images/1.jpg'},
-						{id:2,imgSrc:'./images/2.jpg'},
-						{id:3,imgSrc:'./images/3.jpg'},
-						{id:4,imgSrc:'./images/4.jpg'},
-					],
-					currentIndex:0
-				}
-			},
-			methods:{
-				preHandler(){
-					if (this.currentIndex == 0){
-						this.currentIndex = 3;
-					} else {
-						this.currentIndex--;
-					}
-				},
-				nextHandler(){
-					this.currentIndex++;
-					//更改图片地址
-					if (this.currentIndex == 4){
-						this.currentIndex = 0;
-					}
-				},
-				imgHandler(e){ // 每个对象进来都有一个e
-					console.log(e.target);
-					console.log(this);
-				}
-			},
-			// 组件创建完成，ajax
-			created(){
-				//this指向问题 能用箭头函数 不要用匿名函数
-				// console.log(this);
-				// setInterval(function(){
-				// 	console.log(this);
-				// },1000)
-				setInterval( () => {
-					// console.log(this);
-					this.currentIndex++;
-					if (this.currentIndex == 4){
-						this.currentIndex = 0;
-					}
-				},1000)
-				// let _this = this;
-				// setInterval( function() {
-				// 	console.log(_this);
-				// },1000)
-			}
-		})
-	</script>
+    <div id="app">
+        <img :src="images[currentIndex].imgSrc" alt="" @click="imgHandler">
+        <br>
+        <button @click="preHandler">上一张</button>
+        <button @click="nextHandler">下一张</button>
+    </div>
+    <script>
+        let vm = new Vue({
+            el:'#app',
+            data(){
+                return {
+                    images:[
+                        {id:1,imgSrc:'./images/1.jpg'},
+                        {id:2,imgSrc:'./images/2.jpg'},
+                        {id:3,imgSrc:'./images/3.jpg'},
+                        {id:4,imgSrc:'./images/4.jpg'},
+                    ],
+                    currentIndex:0
+                }
+            },
+            methods:{
+                preHandler(){
+                    if (this.currentIndex == 0){
+                        this.currentIndex = 3;
+                    } else {
+                        this.currentIndex--;
+                    }
+                },
+                nextHandler(){
+                    this.currentIndex++;
+                    //更改图片地址
+                    if (this.currentIndex == 4){
+                        this.currentIndex = 0;
+                    }
+                },
+                imgHandler(e){ // 每个对象进来都有一个e
+                    console.log(e.target);
+                    console.log(this);
+                }
+            },
+            // 组件创建完成，ajax
+            created(){
+                //this指向问题 能用箭头函数 不要用匿名函数
+                // console.log(this);
+                // setInterval(function(){
+                //     console.log(this);
+                // },1000)
+                setInterval( () => {
+                    // console.log(this);
+                    this.currentIndex++;
+                    if (this.currentIndex == 4){
+                        this.currentIndex = 0;
+                    }
+                },1000)
+                // let _this = this;
+                // setInterval( function() {
+                //     console.log(_this);
+                // },1000)
+            }
+        })
+    </script>
 </body>
-</html>	
+</html>
