@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+    <div id="app">
+        <label for="username">用户名：</label><!-- for用于聚焦，如果点到“用户名:”，后面的输入框会有光标-->
+        <input type="text" v-model="msg" id="username"/>
+        <br>
+        <input type="text" :value="msg" @input="changeHandler">
+        <p>{{ msg }}</p>
+        <textarea v-model="msg"></textarea>
+        
+        <br>
+        <input type="checkbox" id="checkbox" v-model="checked">
+        <label for="checkbox">{{ checked }}</label>
+        <br>
+        
+        <!-- 多个复选框 使用列表保存 双向绑定赋值使用的value-->
+        <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+        <label for="jack">Jack</label>
+        <input type="checkbox" id="john" value="John" v-model="checkedNames">
+        <label for="john">John</label>
+        <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+        <label for="mike">Mike</label>
+        <br>
+        <span>Checked names: {{ checkedNames }}</span>
+        <br>
+        <select v-model="selected">
+            <option disabled value="">请选择</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <span>Selected: {{ selected }}</span>
+        
+        <input v-model.lazy="msg" />
+        <br>
+        <input v-model.number="age" type="number"> <!-- 只能输入数字-->
+        
+    </div>
+<script src="../vue.js"></script>
+<script type="text/javascript">
+    //Object.defineProperty() 双向数据绑定使用v-model
+    new Vue({
+        el:'#app',
+        data(){
+            return {
+                msg:'stevenlee',
+                checked:false,
+                checkedNames:[],
+                selected:''
+            }
+        },
+        methods:{
+            changeHandler(e){
+                this.msg = e.target.value
+            }
+        }
+    })
+</script>
+</body>
+</html>
