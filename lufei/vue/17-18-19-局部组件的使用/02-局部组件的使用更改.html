@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+<body>
+    <div id="app">
+        <App></App>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        // 如果仅仅是实例化对象中，既有el，又有template,如果template中定义模板的内容，
+        // 那么template模板的优先级大于el
+        // 全局组件：第一个参数是组件的名字，第二个参数options
+        // <slot></slot> slot是vue中提供的内容组件，它会去分发内容
+        Vue.component('VBtn',{
+            data(){
+                return {
+                    
+                }
+            },
+            template:`
+                <button>
+                    <slot></slot>
+                </button>`
+        })
+        
+        
+        // App header aside content
+        // 1.声子 Vue中 组件的名字 首字母要大写 跟标签区分。组件中的data必须是个函数，一定要有返回值
+        
+        let Vheader = {
+            data(){
+                return {
+                    
+                }
+            },
+            //template定义模板的内容
+            // Component template should contain exactly one root element.
+            template:`
+                <div>
+                    <h2>lee</h2>
+                    <h2>lee</h2>
+                    <VBtn>登陆</VBtn>
+                    <VBtn>注册</VBtn>
+                    <VBtn>按钮</VBtn>
+                    <VBtn>提交</VBtn>
+                </div>
+            `
+        }
+        
+        let App = {
+            data(){
+                return{
+                    text:"I'm steven"
+                }
+            },
+            template:`
+                <div id="a">
+                    <h2>{{ text }}</h2>
+                    <Vheader></Vheader>
+                    <VBtn>删除</VBtn>
+                    <br>
+                </div>
+            `,
+            methods:{
+                
+            },
+            components:{
+                Vheader
+            }
+        }
+        
+        new Vue({
+            el:"#app",//el只有一个，绑定根元素
+            data(){
+                return {
+                    msg:'steven'
+                }
+            },
+            // 3.用子
+            components:{
+                // 2.挂子
+                // 如果key和value一样，可以只写一个
+                // App:App
+                App
+                
+            }
+           
+        })
+    </script>
+</body>
+</html> 
