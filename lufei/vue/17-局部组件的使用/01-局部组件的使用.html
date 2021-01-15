@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+<body>
+    <div id="app">
+        {{ msg }}
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        // 如果仅仅是实例化对象中，既有el，又有template,如果template中定义模板的内容
+        // 那么template模板的优先级大于el
+        
+        // App header aside content
+        // 1.声子 Vue中 组件的名字 首字母要大写 跟标签区分。组件中的data必须是个函数，一定要有返回值
+        
+        let App = {
+            data(){
+                return{
+                    text:"I'm steven"
+                }
+            },
+            template:`
+                <div>
+                    <h2>{{ text }}</h2>
+                </div>
+            `
+        }
+        
+        new Vue({
+            el:"#app",
+            data(){
+                return {
+                    msg:'steven'
+                }
+            },
+            template:`
+                <div class="app">
+                    <App/>
+                </div>
+            `,
+            components:{
+                // 2.挂子
+                // 如果key和value一样，可以只写一个
+                // App:App
+                App
+                
+            }
+           
+        })
+    </script>
+</body>
+</html> 
