@@ -12,6 +12,84 @@
     </div>
     <script src="../vue.js"></script>
     <script>
+        Vue.component('VBtn',{
+            data(){
+                return {
+                    
+                }
+            },
+            template:`
+                <button @click = 'clickHandler'>
+                    {{ id }}
+                </button>`,
+            props:['id'],
+            methods:{
+                clickHandler(){
+                    //每个组件的this指向当前组件对象
+                    console.log(this);
+                    this.id++;
+//                    this.$emit('父组件声明的自定义事件'，'传值’);
+                    this.$emit('clickHandler', this.id);
+                }
+            }
+        })
+        let Vheader = {
+            data(){
+                return {
+                    
+                }
+            },
+            // 只要声明了父组件的属性，就可以使用
+            props:['msg','post'],
+            template:`
+                <div class="child">
+                    <h1>我是header组件</h1>
+                    <h2>lee</h2>
+                    <h2>{{ msg }}</h2>
+                    <h3>{{ post.title }}</h3>
+                    <VBtn v-bind:id = 'post.id' @clickHandler="clickHandler"></VBtn>
+                </div>
+            `,
+            methods:{
+                clickHandler(val){
+                    alert(val);
+                    this.$emit('fatherHandler',val);
+                }
+            },
+            created() {
+                console.log(this);
+            }
+        }
+        
+        let App = {
+            data(){
+                return{
+                    text:"我是父组件的数据",
+                    post: {
+                      id: 1,
+                      title: 'My Journey with Vue'
+                    }
+                }
+            },
+            // <Vheader :msg='text'></Vheader> 相当于自定义属性
+            template:`
+                <div id="a">
+                    我是父组件的{{ post.id }}
+                    <Vheader :msg='text' v-bind:post = 'post' @fatherHandler='father_Handler'></Vheader>
+                </div>
+            `,
+            methods:{
+                father_Handler(val){
+                    this.post.id = val;
+                }
+            },
+            components:{
+                Vheader
+            },
+            created() {
+                console.log(this)
+            }
+        }
         
         new Vue({
             el:"#app",//el只有一个，绑定根元素
