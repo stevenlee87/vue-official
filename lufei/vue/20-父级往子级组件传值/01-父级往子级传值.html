@@ -12,18 +12,32 @@
     </div>
     <script src="../vue.js"></script>
     <script>
+        Vue.component('VBtn',{
+            data(){
+                return {
+                    
+                }
+            },
+            template:`
+                <button>
+                    {{ id }}
+                </button>`,
+            props:['id']    
+        })
         let Vheader = {
             data(){
                 return {
                     
                 }
             },
-            // 挂载父组件的属性
-            props:['msg'],
+            // 只要声明了父组件的属性，就可以使用
+            props:['msg','post'],
             template:`
                 <div class="child">
                     <h2>lee</h2>
                     <h2>{{ msg }}</h2>
+                    <h3>{{ post.title }}</h3>
+                    <VBtn v-bind:id = 'post.id'></VBtn>
                 </div>
             `
         }
@@ -31,12 +45,17 @@
         let App = {
             data(){
                 return{
-                    text:"我是父组件的数据"
+                    text:"我是父组件的数据",
+                    post: {
+                      id: 1,
+                      title: 'My Journey with Vue'
+                    }
                 }
             },
+            // <Vheader :msg='text'></Vheader> 相当于自定义属性
             template:`
                 <div id="a">
-                    <Vheader :msg='text'></Vheader>
+                    <Vheader :msg='text' v-bind:post = 'post'></Vheader>
                 </div>
             `,
             methods:{
@@ -54,7 +73,6 @@
                     msg:'steven'
                 }
             },
-            // 3.用子
             components:{
                 App
                 
