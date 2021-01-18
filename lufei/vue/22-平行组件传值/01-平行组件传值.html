@@ -12,13 +12,52 @@
     </div>
     <script src="../vue.js"></script>
     <script>
+        let bus = new Vue()
+        // A===>B B要声明时间 $on('事件的名字',function(val){})
+        // A要触发事件$emit('A组件中声明的事件名', '值')
+        // 前提：这两个方法必须绑定在同一个实例化对象（bus）
+        Vue.component('Test2',{
+            data(){
+                return {
+                    text:''
+                }
+            },
+            template:`
+                <h2>{{ text }}</h2>
+            `,
+            methods:{
+                
+            },
+            created(){
+                bus.$on('testData',(val)=>{
+                    alert(val)
+                    this.text = val;
+                })
+            }
+        })
+        Vue.component('Test',{
+            data(){
+                return {
+                    msg:"我是子组件的数据"
+                }
+            },
+            template:`
+                <button @click='clickHandler'>传递</button>
+            `,
+            methods:{
+                clickHandler(){
+                    bus.$emit('testData', this.msg)
+                }
+            }
+        })
         let Vheader = {
             data(){
                 return {}
             },
             template:`
-                <div> class="header"
-                    
+                <div class="header">
+                    <Test />
+                    <Test2 />
                 </div>
             `
         }
@@ -27,7 +66,7 @@
                 return {}
             },
             template:`
-                <div> class="app"
+                <div class="app">
                     <Vheader/>
                     
                 </div>
