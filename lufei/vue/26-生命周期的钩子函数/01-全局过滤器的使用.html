@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+<body>
+    <div id="app">
+        <App/>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        
+        let Test ={
+            data(){
+                return {
+                    msg:"steven"
+                }
+            },
+            template:`
+                <div>
+                    我是Test组件
+                </div>
+            `,
+            beforeCreate(){
+                // 组件创建之前
+                console.log(this.msg);
+            },
+            created(){
+                // 组件创建之后
+                // 使用该组件，就会触发以上的钩子函数，created中可以操作数据，发送ajax，并且可以实现vue==》页面的影响  应用：发送ajax请求
+                console.log(this.msg);
+                // this.msg = '嘿嘿黑';
+            }
+        }
+        let App ={
+            data(){
+                return {
+                    
+                }
+            },
+            template:`
+                <div>
+                    <Test />
+                </div>
+            `,
+            components:{
+                Test
+            }
+        }
+        new Vue({
+            el:'#app',
+            data(){
+                return {
+                    
+                }
+            },
+            components:{
+                App
+            }
+        })
+    </script>
+</body>
+</html> 

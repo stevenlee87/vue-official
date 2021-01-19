@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+<body>
+    <div id="app">
+        <App/>
+    </div>
+    <script src="../vue.js"></script>
+    <script src="../moment.js"></script>
+    <script>
+        // 全局过滤器
+        Vue.filter('myTime', function(val,formatStr){
+            return moment(val).format(formatStr);
+        })
+        let App ={
+            data(){
+                return {
+                    msg:'hello world',
+                    time: new Date()
+                }
+            },
+            template:`
+                <div>
+                    我是一个APP {{ msg | myReverse }}
+                    <h2>{{ time | myTime('YYYY-MM-DD') }}</h2>
+                </div>
+            `,
+            filters:{
+                myReverse:function(val){
+                    console.log(val)
+                    return val.split('').reverse().join('')
+                },
+            }
+        }
+        new Vue({
+            el:'#app',
+            data(){
+                return {
+                    
+                }
+            },
+            components:{
+                App
+            }
+        })
+    </script>
+</body>
+</html> 
