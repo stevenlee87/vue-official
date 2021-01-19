@@ -16,36 +16,96 @@
         let Test ={
             data(){
                 return {
-                    msg:"steven"
+                    msg:"steven",
+                    count:0,
+                    timer:null
                 }
             },
             template:`
                 <div>
-                    我是Test组件
+                    <div id="box">{{ msg }}</div>
+                    <p>{{ count }}</p>
+                    <button @click = 'change'>修改</button>
                 </div>
             `,
+            methods:{
+                change(){
+                    this.msg = 'lee';
+                    document.querySelector('#box').style.color = 'red';
+                }
+            },
             beforeCreate(){
                 // 组件创建之前
                 console.log(this.msg);
             },
             created(){
+                // *********最重要
                 // 组件创建之后
-                // 使用该组件，就会触发以上的钩子函数，created中可以操作数据，发送ajax，并且可以实现vue==》页面的影响  应用：发送ajax请求
+                // this.timer = setInterval(()=>{
+                //     this.count++
+                // },1000);
+                
+                // 使用该组件，就会触发以上的钩子函数，created中可以操作数据，发送ajax，并且可以实现数据驱动视图
+                // 应用：发送ajax请求
                 console.log(this.msg);
                 // this.msg = '嘿嘿黑';
+            },
+            beforeMount(){
+                // 装载数据到DOM之前会调用
+                console.log(document.getElementById('app'));
+            },
+            mounted(){
+                // ***很重要***
+                // 这个地方可以操作DOM
+                // 装载数据到DOM之后会调用 可以获取到真实存在的DOM元素，vue操作以后的DOM
+                console.log(document.getElementById('app'));
+                // jsDOM操作
+            },
+            beforeUpdate(){
+                // 在更新之前，调用此钩子，应用：获取原始的DOM
+                console.log(document.getElementById('app').innerHTML);
+            },
+            updated(){
+                // 在更新之后，调用此钩子，应用：获取最新的DOM
+                console.log(document.getElementById('app').innerHTML);
+            },
+            beforeDestroy(){
+                console.log('beforeDestroy');
+            },
+            destroyed(){
+                // 注意：定时器的销毁，要在此方法处理
+                console.log('destroyed',this.timer);
+                clearInterval(this.timer);
+            },
+            activated(){
+                console.log('组件被激活了');
+            },
+            deactivated(){
+                console.log('组件被停用了');
             }
         }
         let App ={
             data(){
                 return {
-                    
+                    isShow:true
                 }
             },
+            // <keep-alive>
+            //     <Test v-if="isShow" />
+            // </keep-alive>  
             template:`
                 <div>
-                    <Test />
+                    <keep-alive>
+                        <Test v-if="isShow" />
+                    </keep-alive>  
+                    <button @click = 'clickHandler'>改变test组件的生死</button>
                 </div>
             `,
+            methods:{
+                clickHandler(){
+                    this.isShow = !this.isShow;
+                }
+            },
             components:{
                 Test
             }
