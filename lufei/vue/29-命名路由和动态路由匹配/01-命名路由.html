@@ -46,10 +46,12 @@
             },
             {
                 path:'/',
+                name:'Home',
                 component:Home
             },
             {
                 path:'/course',
+                name:'Course',
                 component:Course
             }
         ]
@@ -64,11 +66,13 @@
         // router-link浏览器会默认渲染成a标签
         // router-link的to属性会被浏览器默认渲染成href属性
         // router-view是路由组件的出口
+        // <router-link to = '/'>首页</router-link>
+        // <router-link to = '/course'>免费课程</router-link>
         template:`
             <div>
                 <div class="header">
-                    <router-link to = '/'>首页</router-link>
-                    <router-link to = '/course'>免费课程</router-link>
+                    <router-link :to = '{name:"Home"}'>首页</router-link>
+                    <router-link :to = '{name:"Course"}'>免费课程</router-link>
                 </div>
                 <router-view></router-view>
                 

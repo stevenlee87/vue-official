@@ -15,25 +15,35 @@
 <script>
     // 如果以后是模块化编程，Vue.prototype.$VueRouter = VueRouter
     // Vue.use(VueRouter)
-    const Home = {
+    // 路由范式：
+    // http://127.0.0.1:8080/index/user
+    // http://127.0.0.1:8080/user/1
+    // http://127.0.0.1:8080/user/2
+    // http://127.0.0.1:8080/user?user_id=1
+    const User = {
         data(){
             return {
-                
+                user_id:null
             }
         },
         template:`
-            <div>我是首页</div>
-        `
-    }
-    const Course = {
-        data(){
-            return {
-                
-            }
+            <div>我是用户{{ user_id }}</div>
+        `,
+        created(){
+            console.log(this.$route.params.id) // 路由信息对象
+            // 提醒一下，当使用路由参数时，例如从 /user/foo 导航到 /user/bar，原来的组件实例会被复用。
+            // 因为两个路由都渲染同个组件，比起销毁再创建，复用则显得更加高效。
+            // 不过，这也意味着组件的生命周期钩子不会再被调用。
         },
-        template:`
-            <div>我是免费课程</div>
-        `
+        watch: {
+            $route(to, from) {
+              // 对路由变化作出响应...
+              console.log(to.params.id);
+              console.log(from);
+              this.user_id = to.params.id;
+              // 发送ajax
+            }
+        }
     }
     // 创建路由
     const router = new VueRouter({
@@ -41,16 +51,9 @@
         // mode:'history',
         routes:[
             {
-                path:'/',
-                redirect:'/home'
-            },
-            {
-                path:'/',
-                component:Home
-            },
-            {
-                path:'/course',
-                component:Course
+                path:'/user/:id',
+                name:'User',
+                component:User
             }
         ]
     })
@@ -64,11 +67,13 @@
         // router-link浏览器会默认渲染成a标签
         // router-link的to属性会被浏览器默认渲染成href属性
         // router-view是路由组件的出口
+        // <router-link to = '/'>首页</router-link>
+        // <router-link to = '/course'>免费课程</router-link>
         template:`
             <div>
                 <div class="header">
-                    <router-link to = '/'>首页</router-link>
-                    <router-link to = '/course'>免费课程</router-link>
+                    <router-link :to = '{name:"User",params:{id:1}}'>用户1</router-link>
+                    <router-link :to = '{name:"User",params:{id:2}}'>用户2</router-link>
                 </div>
                 <router-view></router-view>
                 
