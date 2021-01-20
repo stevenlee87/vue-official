@@ -1,9 +1,92 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-	</head>
-	<body>
-	</body>
-</html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+<body>
+    <div id="app">
+        
+    </div>
+<script src="../vue.js"></script>
+<script src="../vue-router.js"></script>
+<script>
+    // 如果以后是模块化编程，Vue.prototype.$VueRouter = VueRouter
+    // Vue.use(VueRouter)
+    const Home = {
+        data(){
+            return {
+                
+            }
+        },
+        template:`
+            <div>我是首页</div>
+        `
+    }
+    const Course = {
+        data(){
+            return {
+                
+            }
+        },
+        template:`
+            <div>我是免费课程</div>
+        `
+    }
+    // 创建路由
+    const router = new VueRouter({
+        // 定义路由规则
+        routes:[
+            {
+                path:'/',
+                componens:Home
+            },
+            {
+                path:'/course',
+                component:Course
+            }
+        ]
+    })
+    let App = {
+        data(){
+            return {
+                
+            }
+        },
+        // router-link和router-view是vue-router提供的两个全局组件
+        // router-link浏览器会默认渲染成a标签
+        // router-link的to属性会被浏览器默认渲染成href属性
+        template:`
+            <div class="header">
+                <router-link to = '/'>首页</router-link>
+                <router-link to = '/course'>免费课程</router-link>
+            </div>
+            <div>
+                
+            </div>
+        `
+    }
+    new Vue({
+        el:"#app",
+        // 挂载路由对象
+        // router,
+        router:router,
+        data(){
+            return {
+                
+            }
+        },
+        template:`
+            <div>
+                <App />
+            </div>
+        `,
+        components:{
+            App
+        }
+    })
+</script>
+</body>
+</html> 
