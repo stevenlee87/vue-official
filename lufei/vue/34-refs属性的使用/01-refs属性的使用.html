@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+<body>
+    <div id="app">
+        
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        Vue.component('Test',{
+            data(){
+                return {
+                    
+                }
+            },
+            // 全局组件的template必须写，比如会报错：
+            // [Vue warn]: Failed to mount component: template or render function not defined.
+            template:`
+                <div>我是测试组件</div>
+            `
+        })
+        Vue.component('Test2',{
+            data(){
+                return {
+                    
+                }
+            },
+            // 全局组件的template必须写，比如会报错：
+            // [Vue warn]: Failed to mount component: template or render function not defined.
+            template:`
+                <div>我是测试组件2</div>
+            `
+        })
+        let App = {
+           data(){
+               return {
+                   
+               }
+           },
+           template:`
+               <div>
+                   <input type="text" ref = 'input'>
+                   <Test2 ref = 'efg2'/>
+                   <Test ref = 'abc'/>
+                   
+               </div>
+           `,
+           mounted(){
+               // console.log(this.$refs.input); // 获取原始DOM
+               // 获取鼠标焦点
+               this.$refs.input.focus();
+               console.log(this.$refs.abc); // 获取组件实例对象
+               console.log(this.$refs.abc.$parent); // 获取父组件App
+               console.log(this.$refs.abc.$root); // 子组件通过$root可以直接获取到根，也就是Vue。
+               console.log(this.$children);
+               
+               // for(let key in this.$refs){
+               //     console.log(this.$refs[key]);
+               // }
+           }
+        }
+        new Vue({
+            el:"#app",
+            data(){
+                return {
+                    
+                }
+            },
+            template:`
+                <App />
+            `,
+            components:{
+                App
+            }
+        })
+    </script>
+</body>
+</html> 
