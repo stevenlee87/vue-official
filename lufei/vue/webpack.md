@@ -150,7 +150,7 @@ export default App;
     <div id="app">
         
     </div>
-    <script src="./dist/bundle.js"></script>
+    <script src="./bundle.js"></script>
 </body>
 </html> 
 ```
@@ -246,12 +246,16 @@ module:{
 
 webpack: 5.17.0版本
 
+webpack.dev.config.js
+
 ```javascript
+const path = require('path')
 module.exports = {
     entry:{
-        'main':'./main.js'
+        'main':'./src/main.js'
     },
     output:{
+        path: path.resolve('./static'),
         'filename':'./bundle.js'
     },
     watch:true,
@@ -277,7 +281,44 @@ module.exports = {
 
 ### html-webpack-plugin插件的使用
 
+#### 下载模块
 
+```npm i html-webpack-plugin --save-dev```
+
+save-dev 等于-D参数
+
+```javascript
+const path = require('path')
+
+// 2.导入模块
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+module.exports = {
+    // 入口
+    entry:{
+        // 可以有多个入口，也可以只有一个，如果只有一个，就默认从这这一个入口开始分析
+        'main':'./src/main.js'
+    },
+    output:{
+        // 指定产出的目录
+        path: path.resolve('./static'), // 相对转绝对
+        'filename':'./bundle.js'
+    },
+    watch:true,
+    mode: 'development',
+    module: {
+        rules: [
+          {
+            test: /\.css$/i,
+            use: ["style-loader", "css-loader"],
+          },
+        ],
+      },
+}
+```
+
+
+
+#### Webpack.config.js文件配置
 
 
 
