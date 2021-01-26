@@ -56,25 +56,226 @@ vue更推荐大家使用es6的module
 
 https://es6.ruanyifeng.com/#docs/module
 
+### 模块实现
+
+#### 1.下载webpack为项目开发依赖
+
+cnpm i webpack@3.12.0 -D
+
+#### 2.创建main.js作为项目的入口文件
+
+```javascript
+import Vue from '../../vue.js'
+import App from './App.js'
+
+new Vue({
+    el:'#app',
+    data(){
+        return {
+            
+        }
+    },
+    template:`<App />`,
+    components:{
+        App
+    }
+})
+```
 
 
 
+#### 3.创建一个App.js
+
+```javascript
+let App ={
+    template:`
+        <div>
+            我是App组件111112222
+        </div>
+    `
+}
+// 1.声明并导出
+export var num =2; // 作为一整个对象key导出
+
+// 2.声明再导出
+var num2 =4;
+export {num2};
+
+// 3.抛出一个函数
+export function add(x,y){
+    return console.log(x+y);
+}
+
+// 4.抛出一个对象
+export default App;
+```
 
 
 
+#### 4.在package.json文件中配置如下：
+
+```javascript
+{
+  "name": "01-module_deep",
+  "version": "1.0.2",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "dev": "webpack --config ./webpack.dev.config.js",
+    "build": "webpack --config ./webpack.pro.config.js"
+  },
+  "author": "steven",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^5.0.1",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.17.0",
+    "webpack-cli": "^4.4.0"
+  }
+}
+```
+
+#### 5.新建一个index.html，script脚本引入打包完成的bundle.js如下：
+
+```javascript
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+<body>
+    <div id="app">
+        
+    </div>
+    <script src="./dist/bundle.js"></script>
+</body>
+</html> 
+```
+
+### webpack编译之后的build.js文件解读
+
+#### 		webpack打包模块的源码 执行顺序
+
+​				1.把所有模块的代码放入到函数中，用一个数组保存起来
+
+​				2.根据require时传入的数组索引，能知道需要哪一段代码
+
+​				3.从数组中，根据索引取出包含我们代码的函数
+
+​				4.执行该函数，传入一个对象module exports
+
+​				5.我们的代码，按照约定，正好是用module.exports = 'xxxx'进行赋值
+
+​				6.调用函数结束后，module.exports从原来的空对象，就有值了
+
+​				7.最终return module.exports作为require函数的返回值
+
+### webpack.config.js文件配置
+
+-   entry是一个对象，程序的入口
+    -   key:随意写
+    -   Value:入口文件
+-   output是一个对象，程序的入口
+    -   key:filename
+    -   value:生成的build.js
+-   module模块（对象）
+    -   loaders '[]'
+        -   存在一些loader  ```{test:正则,loader:'style-loader|css-loader'}```
+
+#### 配置文件webpack.config.js的修改
+
+​		修改配置文件名为:webpack.dev.config.js和webpack.pro.config.js
+
+#### 在package.json文件中修改
+
+```javascript
+  "scripts": {
+    "dev": "webpack --config ./webpack.dev.config.js",
+    "build": "webpack --config ./webpack.pro.config.js"
+  }
+```
 
 
 
+### css文件处理
+
+#### es6模块导入
+
+```javascript
+import './main.css'
+```
+
+#### 编译之后报错
+
+![image-20210126105718811](webpack.assets/image-20210126105718811.png)
 
 
 
+对于webpack来说，css文件也是一个模块，但是像这样的文件，webpack得需要loaders去处理这些文件
 
+#### 下载并配置
 
+```npm i css-loader style-loader -D```
 
+cnpm i webpack@5.17.0 -D
 
+cnpm i css-loader style-loader -D
 
+cnpm install -D webpack-cli
 
+npm run dev
 
+webpack: 3.12.0版本
+
+```javascript
+module:{
+    loaders:[
+        {
+            // 遇到后缀为.css的文件，webpack先用css-loader加载器去解析这个文件
+            // 最后计算完的css，将会使用style-loader生成一个内容为最终解析完的css代码的style标签，放到head标签里
+            // webpack在打包过程中，遇到后缀为css的文件，就会使用style-loader的css-loader去加载这个文件
+        	test:/\.css$/,
+            loader:'style-loader!css-loader'
+        }
+    ]
+}
+```
+
+webpack: 5.17.0版本
+
+```javascript
+module.exports = {
+    entry:{
+        'main':'./main.js'
+    },
+    output:{
+        'filename':'./bundle.js'
+    },
+    watch:true,
+    mode: 'development',
+    module: {
+        rules: [
+          {
+            test: /\.css$/i,
+            use: ["style-loader", "css-loader"],
+          },
+        ],
+      },
+}
+```
+
+### 图片文件的处理
+
+#### App.js导入图片资源
+
+#### 下载处理图片loader模块
+
+#### 添加loader的配置
+
+### html-webpack-plugin插件的使用
 
 
 
