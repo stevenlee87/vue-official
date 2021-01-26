@@ -316,11 +316,13 @@ module.exports = {
 }
 ```
 
-
-
 #### Webpack.config.js文件配置
 
+### 单文件引入
 
+#### 下载包
+
+cnpm install vue-loader vue-template-compiler -D
 
 
 
