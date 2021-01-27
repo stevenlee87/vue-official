@@ -322,9 +322,19 @@ module.exports = {
 
 #### 下载包
 
+要在root用户下执行，不然没有权限
+
+
+
 cnpm install vue-loader vue-template-compiler -D
 
+### webpack-dev-server
 
+#### 下载模块
 
+1.  Cnpm install webpack-dev-server -D
 
+cnpm uninstall webpack -g
+
+cnpm uninstall webpack-dev-server -g
 
