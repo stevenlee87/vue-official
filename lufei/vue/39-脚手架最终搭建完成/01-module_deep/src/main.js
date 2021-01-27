@@ -2,6 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import './index.css'
 import VueRouter from 'vue-router'
+// 如果是基于模块化机制 Vue.use(VueRouter)
+Vue.use(VueRouter)
 // 声明组件
 import Home from './components/Home/Home.vue'
 import Course from './components/Course/Course.vue'
@@ -22,7 +24,7 @@ const router = new VueRouter({
         }
     ]
 })
-
+console.log(router)
 new Vue({
     el:'#app',
     router,
@@ -31,9 +33,9 @@ new Vue({
             
         }
     },
-    render:c=>(App)
+    render:c=>c(App),
     // template:`<App />`,
-    // components:{
-    //     App
-    // }
+    components:{
+        App
+    }
 })
