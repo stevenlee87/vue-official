@@ -338,3 +338,33 @@ cnpm uninstall webpack -g
 
 cnpm uninstall webpack-dev-server -g
 
+### vue-cli2.x脚手架的应用
+
+参考链接：https://github.com/vuejs/vue-cli/tree/v2#vue-cli--
+
+安装：
+
+```javascript
+npm install -g vue-cli
+```
+
+用法：
+
+```javascript
+vue init < template-name > < project-name >
+```
+
+例：
+
+```javascript
+vue init webpack my-project
+```
+
+目前可用的模块包括：
+
+-   webpack --- 一个功能齐全的webpack + vue-loader设置，具有热重载，linting，测试和css提取功能。
+-   webpack-simple --- 一个简单的webpack + vue-loader设置，用于快速原型设计
+-   browserify --- 全功能Browserify + vueify 设置用热重转载，linting & 单元测试
+-   browserify-simple --- 一个简单的Browserify + vueify 设置，用于快速原型设计
+-   pwa --- 基于webpack模板的vue-cli的PWA模板
+-   simple --- 单个HTML文件中最简单的Vue设置
