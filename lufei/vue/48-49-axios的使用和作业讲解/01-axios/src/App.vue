@@ -1,23 +1,30 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <div class="header">
+      <ul>
+        <li v-for="(item) in navList" :key='item.id'>
+          <router-link :to = "{name:item.name}">{{ item.title }}</router-link>
+        </li>
+      </ul>
+    </div>
     <router-view/>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data(){
+    return {
+      navList: [
+        {id:1,title:'首页',name:"Home"},
+        {id:2,title:'免费课程',name:"Course"}
+      ]
+    }
+  }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>

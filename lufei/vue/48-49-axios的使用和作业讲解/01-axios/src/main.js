@@ -3,8 +3,11 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+// 引入axios
 import Axios from 'axios'
+// 将axios挂载到Vue原型上
 Vue.prototype.$https = Axios
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
