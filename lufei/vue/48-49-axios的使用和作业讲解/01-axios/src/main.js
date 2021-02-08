@@ -8,6 +8,9 @@ import Axios from 'axios'
 // 将axios挂载到Vue原型上
 Vue.prototype.$https = Axios
 
+// 设置公共的URL
+Axios.defaults.baseURL = 'http://127.0.0.1:8090/';
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

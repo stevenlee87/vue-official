@@ -1,66 +1,65 @@
 <!DOCTYPE html>
 <html lang="zh">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title></title>
-    <script src="./vue.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <style type="text/css">
-        span.active{
-            color: red;
-        }
-    </style>
-</head>
-<body>
-    <div id="app">
-        <span @click = 'handlerClick(index)' v-for="(category,index) in categoryList"
-        :key='category.id' :class='{active:currentIndex==index}'>
-            {{ category.name }}
-        </span>
-
-    </div>
-    <script>
-        let vm = new Vue({
-            el:'#app',
-            data(){
-                return {
-                    categoryList:[],
-                    currentIndex:0,
-                }
-            },
-            methods:{
-                handlerClick(i){
-                    this.currentIndex = i;
-                }
-            },
-            // 组件创建完成，ajax
-            created(){
-                //this指向问题 能用箭头函数 不要用匿名函数
-
-                $.ajax({
-                    url:"http://127.0.0.1:8090/category",
-                    type:"get",
-                    success: (data) =>{
-                        console.log(data);
-                        if (data.error_no === 0){
-                            var data = data.data;
-                            let obj = {
-                                id:0,
-                                name: '全部',
-                                category:0
-                            }
-                            this.categoryList = data;
-                            this.categoryList.unshift(obj)
-                        }
-                    },
-                    error:function (err){
-                        console.log(err);
-                    }
-                })
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title></title>
+        <script src="./vue.js"></script>
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <style type="text/css">
+            span.active {
+                color: red;
             }
-        })
-    </script>
-</body>
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <span @click='handlerClick(index)' v-for="(category,index) in categoryList" :key='category.id' :class='{active:currentIndex==index}'>
+                {{ category.name }}
+            </span>
+
+        </div>
+        <script>
+            let vm = new Vue({
+                el: '#app',
+                data() {
+                    return {
+                        categoryList: [],
+                        currentIndex: 0,
+                    }
+                },
+                methods: {
+                    handlerClick(i) {
+                        this.currentIndex = i;
+                    }
+                },
+                // 组件创建完成，ajax
+                created() {
+                    //this指向问题 能用箭头函数 不要用匿名函数
+
+                    $.ajax({
+                        url: "http://127.0.0.1:8090/category",
+                        type: "get",
+                        success: (data) => {
+                            console.log(data);
+                            if (data.error_no === 0) {
+                                var data = data.data;
+                                let obj = {
+                                    id: 0,
+                                    name: '全部',
+                                    category: 0
+                                }
+                                this.categoryList = data;
+                                this.categoryList.unshift(obj)
+                            }
+                        },
+                        error: function(err) {
+                            console.log(err);
+                        }
+                    })
+                }
+            })
+        </script>
+    </body>
 </html>
