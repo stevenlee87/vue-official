@@ -13,10 +13,10 @@
     <script src="../vue.js"></script>
     <script>
         let bus = new Vue()
-        // A===>B B要声明时间 $on('事件的名字',function(val){})
+        // A===>B B要声明事件 $on('事件的名字',function(val){})
         // A要触发事件$emit('A组件中声明的事件名', '值')
         // 前提：这两个方法必须绑定在同一个实例化对象（bus）
-        Vue.component('Test2',{
+        Vue.component('Test2',{ // B
             data(){
                 return {
                     text:''
@@ -35,7 +35,7 @@
                 })
             }
         })
-        Vue.component('Test',{
+        Vue.component('Test',{ // A
             data(){
                 return {
                     msg:"我是子组件的数据"
