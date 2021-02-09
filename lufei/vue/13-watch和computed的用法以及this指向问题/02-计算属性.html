@@ -23,7 +23,7 @@
             },
             created(){
                 // 定时器 ajax 库 function(){}
-                // setInterval ({
+                // setInterval (()=>{
 
                 // })
             },
@@ -33,9 +33,9 @@
                     this.msg = "lee";
                     this.age = 20
                 },
-                clickHandler:function () {
-                    console.log(this);
-                }
+                // clickHandler:function () {
+                //     console.log(this); // this指向当前对象vm
+                // }
                 // clickHandler: () => { //this指向window，能用箭头用箭头。methods里不需要用箭头函数
                 //     console.log(this);
                 // }
