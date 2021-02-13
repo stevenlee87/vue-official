@@ -2,6 +2,7 @@
   <div>
     我是首页
     <h1>我是父组件中 {{ myNum }}</h1>
+    <Son />
   </div>
 </template>
 

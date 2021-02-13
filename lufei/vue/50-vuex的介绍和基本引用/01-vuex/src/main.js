@@ -17,13 +17,27 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
-    num:1
+    num: 1
   },
   mutations: {
-
+    setMutaNum(state, val) {
+      console.log(val);
+      state.num += val;
+    },
+    setMutaAsync: function(state, val) {
+      state.num += val;
+    }
   },
-  actions: {
-
+  actions: { // actions里面都是异步的方法
+    // Action 提交的是 mutation，而不是直接变更状态。
+    setActionNum(context, val) {
+      context.commit('setMutaNum', val)
+    },
+    setActionAsync: function(context, val) {
+      setTimeout(() => { // 异步执行
+        context.commit('setMutaAsync', val)
+      }, 1)
+    }
   }
 
 })
