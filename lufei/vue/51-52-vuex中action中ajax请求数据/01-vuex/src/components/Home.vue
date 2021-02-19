@@ -13,8 +13,8 @@
     components: {
       Son
     },
-    computed: {
-      myNum: function() {
+    computed:{
+      myNum:function(){
         return this.$store.state.num;
       }
     }
