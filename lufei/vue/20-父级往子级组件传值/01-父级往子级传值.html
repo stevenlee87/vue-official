@@ -1,38 +1,38 @@
 <!DOCTYPE html>
 <html lang="zh">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title></title>
-</head>
-<body>
-    <div id="app">
-        <App></App>
-    </div>
-    <script src="../vue.js"></script>
-    <script>
-        Vue.component('VBtn',{
-            data(){
-                return {
-                    
-                }
-            },
-            template:`
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title></title>
+    </head>
+    <body>
+        <div id="app">
+            <App></App>
+        </div>
+        <script src="../vue.js"></script>
+        <script>
+            Vue.component('VBtn', {
+                data() {
+                    return {
+
+                    }
+                },
+                template: `
                 <button>
                     {{ id }}
                 </button>`,
-            props:['id']    
-        })
-        let Vheader = {
-            data(){
-                return {
-                    
-                }
-            },
-            // 只要声明了父组件的属性，就可以使用
-            props:['msg','post'],
-            template:`
+                props: ['id']
+            })
+            let Vheader = {
+                data() {
+                    return {
+
+                    }
+                },
+                // 只要声明了父组件的属性，就可以使用
+                props: ['msg', 'post'],
+                template: `
                 <div class="child">
                     <h2>lee</h2>
                     <h2>{{ msg }}</h2>
@@ -40,45 +40,45 @@
                     <VBtn v-bind:id = 'post.id'></VBtn>
                 </div>
             `
-        }
-        
-        let App = {
-            data(){
-                return{
-                    text:"我是父组件的数据",
-                    post: {
-                      id: 1,
-                      title: 'My Journey with Vue'
+            }
+
+            let App = {
+                data() {
+                    return {
+                        text: "我是父组件的数据",
+                        post: {
+                            id: 1,
+                            title: 'My Journey with Vue'
+                        }
                     }
-                }
-            },
-            // <Vheader :msg='text'></Vheader> 相当于自定义属性
-            template:`
+                },
+                // <Vheader :msg='text'></Vheader> 相当于自定义属性
+                template: `
                 <div id="a">
                     <Vheader :msg='text' v-bind:post = 'post'></Vheader>
                 </div>
             `,
-            methods:{
-                
-            },
-            components:{
-                Vheader
-            }
-        }
-        
-        new Vue({
-            el:"#app",//el只有一个，绑定根元素
-            data(){
-                return {
-                    msg:'steven'
+                methods: {
+
+                },
+                components: {
+                    Vheader
                 }
-            },
-            components:{
-                App
-                
             }
-           
-        })
-    </script>
-</body>
-</html> 
+
+            new Vue({
+                el: "#app", //el只有一个，绑定根元素
+                data() {
+                    return {
+                        msg: 'steven'
+                    }
+                },
+                components: {
+                    App
+
+                }
+
+            })
+        </script>
+    </body>
+</html>
