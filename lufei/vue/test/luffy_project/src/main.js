@@ -7,6 +7,12 @@ import router from './router'
 let bus = new Vue()
 Vue.prototype.$bus = bus;
 
+import {
+  mapState,
+  mapMutations,
+  mapAction
+} from 'vuex'
+
 
 // 1.导入vuex
 import Vuex from 'vuex'
@@ -14,7 +20,8 @@ Vue.use(Vuex)
 // 2.创建store实例
 let store = new Vuex.Store({
   state: {
-    count: 1
+    count: 1,
+    countSimp: 5
   },
   mutations: {
     get_count(state) {
@@ -26,7 +33,7 @@ let store = new Vuex.Store({
     get_count(context) {
       setTimeout(() => {
         context.commit('get_count')
-      },500)
+      }, 500)
     }
   }
 })
