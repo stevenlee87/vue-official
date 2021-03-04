@@ -1,7 +1,7 @@
 <template>
   <div class="luffy-city">
     <div class="block">
-      <el-carousel height="400px">
+      <el-carousel :interval="5000" height="400px">
         <el-carousel-item v-for="item in sliderImages" :key="item.id">
           <img :src="item.imgSrc" alt="item.id" style="width: 100%;height: 100%;">
         </el-carousel-item>
