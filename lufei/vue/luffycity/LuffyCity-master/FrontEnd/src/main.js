@@ -30,6 +30,7 @@ router.beforeEach((to, from, next) => {
 
 
 import * as api from './restful/api'
+// 在组件中使用this.$http即可访问api
 Vue.prototype.$http=api
 
 // 导入elementUI

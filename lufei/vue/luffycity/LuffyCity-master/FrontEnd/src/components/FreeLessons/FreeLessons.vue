@@ -7,8 +7,7 @@
     </div>
     <div class="course-screening">
       <ul>
-        <li v-for="(category, index) in categoryList" :key="category.id" :class="{this:index===currentIndex}"
-            @click="categoryClick(index, category.id)">
+        <li v-for="(category, index) in categoryList" :key="category.id" :class="{this:index===currentIndex}" @click="categoryClick(index, category.id)">
           {{category.title}}
         </li>
       </ul>
@@ -61,9 +60,13 @@
     methods: {
       // 获取免费课程分类列表
       getCategoryList() {
-        this.$http.getFreeCategory().then(res => {
+        this.$http.getFreeCategory().then(res => { // res就是api.js里的res.data
           this.categoryList = res;
-          let allItem = {id: 0, title: '全部', categoryType: 0}
+          let allItem = {
+            id: 0,
+            title: '全部',
+            categoryType: 0
+          }
           this.categoryList.unshift(allItem);
         }).catch(err => {
           console.log(err);

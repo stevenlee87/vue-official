@@ -63,8 +63,11 @@ export const degreeCourseDetail = (courseId) => {
 
 // 购物车结算页面列表
 export const settlementList = () => {
-  return Axios.get(`payment/list`,
-    {params: {'token': localStorage.getItem('access_token')}}).then(res => res.data);
+  return Axios.get(`payment/list`, {
+    params: {
+      'token': localStorage.getItem('access_token')
+    }
+  }).then(res => res.data);
 }
 // 购物车结算支付接口
 export const settlement = (paymentData) => {
@@ -73,8 +76,11 @@ export const settlement = (paymentData) => {
 
 // 购物车页面列表
 export const shopCarList = () => {
-  return Axios.get(`shopping/list`,
-    {params: {'token': localStorage.getItem('access_token')}}).then(res => res.data);
+  return Axios.get(`shopping/list`, {
+    params: {
+      'token': localStorage.getItem('access_token')
+    }
+  }).then(res => res.data);
 }
 // 商品课程添加到购物车
 export const shopCartAdd = (goodsInfo) => {
@@ -87,13 +93,19 @@ export const shopCarDeleteGoods = (deleteCourseList) => {
 
 // 我的教室学生页面列表内容
 export const classroomCourseList = () => {
-  return Axios.get(`enroll/degree`,
-    {params: {'token': localStorage.getItem('access_token')}}).then(res => res.data);
+  return Axios.get(`enroll/degree`, {
+    params: {
+      'token': localStorage.getItem('access_token')
+    }
+  }).then(res => res.data);
 }
 // 我的教室老师页面列表内容
 export const getTeacherDetailList = () => {
-  return Axios.get(`enroll/teacher`,
-    {params: {'token': localStorage.getItem('access_token')}}).then(res => res.data);
+  return Axios.get(`enroll/teacher`, {
+    params: {
+      'token': localStorage.getItem('access_token')
+    }
+  }).then(res => res.data);
 }
 // 提问
 export const questions = (data) => {
@@ -101,8 +113,11 @@ export const questions = (data) => {
 }
 // 作业
 export const homeworkDetail = (id) => {
-  return Axios.get(`homework/homeworkDetail/${id}`,
-    {params: {'token': localStorage.getItem('access_token')}}).then(res => res.data);
+  return Axios.get(`homework/homeworkDetail/${id}`, {
+    params: {
+      'token': localStorage.getItem('access_token')
+    }
+  }).then(res => res.data);
 }
 // 作业批改
 export const submitApproval = (data) => {
